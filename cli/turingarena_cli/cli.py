@@ -269,7 +269,11 @@ def main():
     if not args.local:
         check_daemon()
 
-    args.git_dir = setup_git_env()
+    git_dir = setup_git_env()
+    if args.local:
+        args.git_dir = git_dir
+    else:
+        args.git_dir = None
 
     if args.command in ["skeleton", "template"]:
         args.what = args.command

@@ -2,6 +2,7 @@ import importlib
 import os
 import pkgutil
 from collections import namedtuple
+from typing import List
 
 
 class UnknownFileExtension(Exception):
@@ -19,7 +20,7 @@ class Language(namedtuple("Language", [
     __slots__ = []
 
     @staticmethod
-    def languages():
+    def languages() -> List["Language"]:
         from . import languages as language_package
 
         languages = []

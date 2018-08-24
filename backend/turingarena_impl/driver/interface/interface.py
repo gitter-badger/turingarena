@@ -1,4 +1,5 @@
 import logging
+from functools import lru_cache
 
 from turingarena import InterfaceError
 from turingarena_impl.driver.interface.block import Block, BlockNode
@@ -35,6 +36,7 @@ class InterfaceDefinition:
             return InterfaceDefinition.compile(f.read())
 
     @staticmethod
+    @lru_cache()
     def compile(source_text, validate=True):
         interface = InterfaceDefinition(source_text)
         if validate:
